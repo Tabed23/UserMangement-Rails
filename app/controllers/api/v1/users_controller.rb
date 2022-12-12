@@ -1,6 +1,7 @@
 class Api::V1::UsersController < ApplicationController
+  before_action :getUser, only: [:deleteUser, :updateUser, :showUser]
 
-   # get all users
+  # get all users
    def getUsers
       user = User.all
       if user
