@@ -14,6 +14,9 @@ class Api::V1::UsersController < ApplicationController
 
   def addUser
       user = User.new(userprams)
+
+      user.type = 2
+
       if  user.save()
         render json: user , status: :ok
       else
