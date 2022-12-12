@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
+
+    namespace :auth do
+      post 'login', action: :login, controller: :auth
+    end
+
     namespace :v1 do
       get 'get_user', action: :getUsers, controller: :users
       put 'put_user', action: :updateUser, controller: :users
@@ -8,5 +12,7 @@ Rails.application.routes.draw do
       delete 'delete_user', action: :deleteUser, controller: :users
       get 'show_user', action: :showUser, controller: :users
     end
+
   end
+
 end

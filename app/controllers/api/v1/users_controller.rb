@@ -18,7 +18,7 @@ class Api::V1::UsersController < ApplicationController
         render json: user , status: :ok
       else
 
-        render json: {msg: "[error], user not created"}, status: :unprocessable_entity
+        render json: {msg: "error, user not created", error: user.errors}, status: :unprocessable_entity
       end
   end
 
@@ -54,7 +54,7 @@ class Api::V1::UsersController < ApplicationController
        if @user.update(userprams)
         render json: @user, status: :ok
         else
-          render json: {msg:"update failed"}, status: :unprocessable_entity
+          render json: {msg:"update failed", error: user.errors}, status: :unprocessable_entity
        end
     else
       render json: {msg:"user not found...!!"}, status: :unprocessable_entity
