@@ -17,4 +17,9 @@ class Api::Auth::AuthController < ApplicationController
       end
   end
 
+  def check_token
+    token = params[:token]
+    self.creat_token(1, true, true);
+  end
+
 end

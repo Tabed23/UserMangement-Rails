@@ -1,6 +1,10 @@
 class Api::V1::UsersController < ApplicationController
   before_action :getUser, only: [:deleteUser, :updateUser, :showUser]
 
+  before_action  only: [:updateUser, :deleteUser] do
+    check_token
+  end
+
   # get all users
    def getUsers
       user = User.all
@@ -9,7 +13,7 @@ class Api::V1::UsersController < ApplicationController
       else
         render json:{msg:"user empty"}, status: :unprocessable_entity
       end
-  end # end get user
+   end
 
 
   def addUser
@@ -56,7 +60,7 @@ class Api::V1::UsersController < ApplicationController
     if @user
        if @user.update(userprams)
         render json: @user, status: :ok
-        else
+       else
           render json: {msg:"update failed", error: user.errors}, status: :unprocessable_entity
        end
     else
